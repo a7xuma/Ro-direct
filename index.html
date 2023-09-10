@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html rodirect_version="0.1.1a">
+<html rodirect_version="0.1.1b">
   <head>
     <title>a7xuma's Ro-direct</title>
     <style>
@@ -61,10 +61,11 @@
         if (validateGameId(gameId) & validateJobId(jobId)) {
           navigator.clipboard.writeText(ro_direct).then(
             () => { // passed
-              alert("Link copied to your clipboard.")
+              //alert("Link copied to your clipboard. Redirecting you in 1 second(s)...");
+              window.location.href = ro_direct;
             },
             () => { // failed
-              alert("Could not copy to the clipboard.")
+              alert("Could not copy to the clipboard.");
             }
           )
         }
