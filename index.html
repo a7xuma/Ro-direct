@@ -52,7 +52,7 @@
         console.log("Doing...")
         let gameId = document.querySelector(".gameid input").value;
         let jobId = document.querySelector(".jobid input").value;
-        let base_link = "https://a7xuma.github.io/Ro-direct/index.html";
+        let base_link = "https://a7xuma.github.io/Ro-direct/";
         let ro_direct = `${base_link}?gameId=${gameId}&jobId=${jobId}`;
 
         if (validateGameId(gameId) & validateJobId(jobId)) {
@@ -99,7 +99,7 @@
           wrongParams.classList.remove("hidden");
 
           setTimeout(function() {
-            window.location.href = `https://a7xuma.github.io/Ro-direct/index.html`;
+            window.location.href = `https://a7xuma.github.io/Ro-direct/`;
           }, 5000)
         }
       } else {
