@@ -16,6 +16,9 @@
     <div class="holder">
       <div class="hasParams hidden">
         <h1>Redirecting...</h1>
+        <!--<p>If you're having trouble redirecting, read the troubleshooting guide below.</p>
+        <div class="spacer"></div>
+        <h2>Buy</h2>-->
       </div>
 
       <div class="wrongParams hidden">
@@ -46,11 +49,17 @@
     </div>
     <script>
       function copyToClipboard() {
-        console.log("Doing...")
         let gameId = document.querySelector(".gameid input").value;
         let jobId = document.querySelector(".jobid input").value;
         let base_link = "https://a7xuma.github.io/Ro-direct/";
         let ro_direct = `${base_link}?gameId=${gameId}&jobId=${jobId}`;
+
+        if (!validateGameId(gameId)) {
+          alert("Game ID is not a valid number.");
+        }
+        if (!validateJobId(jobId)) {
+          alert("Job ID is not valid.");
+        }
 
         if (validateGameId(gameId) & validateJobId(jobId)) {
           navigator.clipboard.writeText(ro_direct).then(
@@ -77,7 +86,9 @@
       }
 
       function validateJobId(jobId) {
-        return /^[a-zA-Z0-9-]+$/.test(jobId);
+        var guidPattern = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
+
+        return guidPattern.test(jobId);
       }
 
       const url = window.location.href;
