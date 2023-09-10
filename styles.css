@@ -1,0 +1,53 @@
+* { margin: 0; border: 0; }
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.holder {
+  height: 100dvh; width: 55%;
+  text-align: center;
+  background: rgb(0, 0, 0, 0.5);
+}
+h1 {
+  padding-bottom: 0.3em;
+}
+.spacer {
+  height: 25px;
+  width: 100%;
+  background: transparent;
+}
+.noParams, .hasParams {
+
+}
+.subholder {
+  display: flex;
+  gap: 0.5em 0.5em;
+  justify-content: center;
+
+  &.row {
+    flex-direction: row;
+  }
+
+  &.column {
+    flex-direction: column;
+  }
+  & > input:not(.ro-directLink) {
+    width: 32.5%;
+  }
+  & > .ro-directLink, .submit {
+    width: calc(40% - 7px);
+  }
+
+  & > input, .submit, .ro-directLink {
+    background: rgb(205, 205, 205, 0.1);
+    color: rgb(205, 205, 205);
+  }
+
+  & input[type="number"] {
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+}
