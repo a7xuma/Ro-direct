@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>a7xuma's Ro-direct</title>
+    <style>
+      * { font-family: system-ui; }
+      .dark {
+        background-color: rgb(25, 25, 25);
+        color: rgb(155, 155, 155);
+      }
+      .hidden { display: none; }
+    </style>
+    <link rel="stylesheet" type="text/css" href="styles.css"/>
+  </head>
+  <body class="dark">
+    <div class="holder">
+      <div class="hasParams hidden">
+        <h1>Redirecting...</h1>
+        <!--<p>If you're having trouble redirecting, read the troubleshooting guide below.</p>
+        <div class="spacer"></div>
+        <h2>Buy</h2>-->
+      </div>
+
+      <div class="wrongParams hidden">
+        <h1>Parameters failed</h1>
+        <p>If you're seeing this, the parameters are incorrect and you could not be redirected.</p>
+        <p>This is not a site issue and is an issue by you or the person who sent the link.</p>
+        <p><strong>Redirecting you to the main site in 5 seconds...</strong></p>
+      </div>
+
+      <div class="noParams hidden">
+        <h1>Ro-direct</h1>
+        <p>Create your own <strong>Ro-direct</strong> link here!</p>
+        <div class="spacer"></div>
+        <div class="subholder column">
+          <div class="subholder row gameid">
+            <p>Game ID</p>
+            <input type="number" maxlength="15">
+          </div>
+          <div class="subholder row jobid">
+            <p style="padding-left: 17px;">Job ID</p>
+            <input type="text" maxlength="36", placeholder="5d469967-9471-423d-8411-8c23a5534c22">
+          </div>
+          <div class="subholder row">
+            <button class="submit" onclick="copyToClipboard()">Create Ro-direct</button>
+          </div>
+        </div>
+
+    </div>
+    <script>
+      function copyToClipboard() {
+        console.log("Doing...")
+        let gameId = document.querySelector(".gameid input").value;
+        let jobId = document.querySelector(".jobid input").value;
+        let base_link = "https://a7xuma.github.io/Ro-direct/index.html";
+        let ro_direct = `${base_link}?gameId=${gameId}&jobId=${jobId}`;
+
+        if (validateGameId(gameId) & validateJobId(jobId)) {
+          navigator.clipboard.writeText(ro_direct).then(
+            () => { // passed
+              alert("Link copied to your clipboard.")
+            },
+            () => { // failed
+              alert("Could not copy to the clipboard.")
+            }
+          )
+        }
+      }
+
+      function parseUrlParameters(url) {
+        const params = new URL(url).searchParams;
+        const gameId = params.get('gameId');
+        const jobId = params.get('jobId');
+
+        return { gameId, jobId };
+      }
+
+      function validateGameId(gameId) {
+        return /^[1-9]\d*$/.test(gameId);
+      }
+
+      function validateJobId(jobId) {
+        return /^[a-zA-Z0-9-]+$/.test(jobId);
+      }
+
+      const url = window.location.href;
+
+      const { gameId, jobId } = parseUrlParameters(url);
+
+      if (gameId && jobId) {
+        if (validateGameId(gameId) && validateJobId(jobId)) {
+          let hasParams = document.querySelector(".hasParams");
+
+          hasParams.classList.remove("hidden");
+          window.location.href = `roblox://experiences/start?placeId=${gameId}&gameInstanceId=${jobId}`;
+        } else {
+          let wrongParams = document.querySelector(".wrongParams");
+
+          wrongParams.classList.remove("hidden");
+
+          setTimeout(function() {
+            window.location.href = `https://a7xuma.github.io/Ro-direct/index.html`;
+          }, 5000)
+        }
+      } else {
+        let noParams = document.querySelector(".noParams");
+        let gameIdInput = document.querySelector(".gameid input");
+
+        gameIdInput.value = 1234560;
+        noParams.classList.remove("hidden");
+      }
+    </script>
+  </body>
+</html>
