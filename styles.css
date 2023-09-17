@@ -6,7 +6,7 @@ body {
   overflow: hidden;
 }
 .holder {
-  height: 100dvh; width: 55%;
+  height: 100dvh;
   text-align: center;
   background: rgb(0, 0, 0, 0.5);
 }
@@ -34,10 +34,11 @@ h1 {
     flex-direction: column;
   }
   & > input:not(.ro-directLink) {
-    width: 32.5%;
+    width: 345px;
+    text-align: center;
   }
   & > .ro-directLink, .submit {
-    width: calc(40% - 7px);
+    width: 420px;
   }
 
   & > input, .submit, .ro-directLink {
@@ -50,4 +51,14 @@ h1 {
     -moz-appearance: textfield;
     appearance: textfield;
   }
+}
+
+@media screen and (min-width: 701px) {
+  .holder { width: 700px; }
+}
+@media screen and (max-width: 700px) {
+  .holder { width: 100%; }
+  .subholder >* input:not(.ro-directLink),
+  .subholder >* .ro-directLink { width: 50%; }
+  .subholder >* .submit { width: 65%; }
 }
