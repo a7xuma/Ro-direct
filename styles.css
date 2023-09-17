@@ -53,10 +53,10 @@ h1 {
   }
 }
 
-@media screen and (min-width: 701px) {
+@media (orientation: landscape) {
   .holder { width: 700px; }
 }
-@media screen and (max-width: 700px) {
+@media (orientation: portrait) {
   .holder { width: 100%; }
   .subholder >* input:not(.ro-directLink),
   .subholder >* .ro-directLink { width: 50%; }
